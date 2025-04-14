@@ -140,7 +140,7 @@ const libros = [
     },
     ]; 
     
-    //2. Funciones de Gestión de Libros.
+    //2. FUNCIONES DE GESTIÓN DE LIBROS.
     
     //a. Implementar una función agregarLibro(id, titulo, autor, anio, genero)
     //que agregue un nuevo libro al array libros.
@@ -159,12 +159,12 @@ const libros = [
     console.log(`El libro "${título}" se ha agregado.`); 
     }
     
+    agregarLibro(12, 'Una habitación propia', 1929, 'Ensayo');
+
     //b. Crear una función buscarLibro(criterio, valor) que permita buscar 
     //libros por título, autor o género utilizando el algoritmo de búsqueda
     //lineal.
 
-    agregarLibro(12, 'Una habitación propia', 1929, 'Ensayo');
-    
     function buscarLibro(criterio, valor) {
     
     for (let i = 0; i < libros.length; i++) { 
@@ -181,5 +181,80 @@ const libros = [
     //por título o año utilizando el algoritmo de ordenamiento burbuja
    //(bubble sort) y luego muestre los libros ordenados en la consola.
     
+   function ordenarLibros(criterio) {
+   let librosOrdenados = [...libros];
+
+   for (let i = 0; i < librosOrdenados.length - 1; i++) {
+   for (let j = 0; j < librosOrdenados.length - 1 - i; j++) {
    
-    
+   if (librosOrdenados[j].año > librosOrdenados[j + 1].año) {
+   
+   let temp = librosOrdenados[j];
+   librosOrdenados[j] = librosOrdenados[j + 1];
+   librosOrdenados[j + 1] = temp;
+
+   }
+
+   }
+
+   }
+
+   console.log('Libros ordenados por año:');
+   librosOrdenados.forEach(libro => {
+   console.log(`${libro.título} - ${libro.año}`);
+
+   });
+   }
+
+   ordenarLibros();
+
+   //d. Desarrollar una función borrarLibro(id) que elimine el libro que se le
+   //pase por parámetro.
+
+   function borrarLibro(id) {
+   const librosActualizados = libros.filter(libro => libro.id !== id);
+
+   if (librosActualizados.length === libros.length) {
+   console.log('No se encontró el libro');
+   } else {
+
+   libros.length = 0;
+   libros.push(...librosActualizados);
+   console.log('El libro ha sido eliminado');
+
+   }
+   }
+
+   borrarLibro();
+   console.log(libros);
+
+   //3. GESTIÓN DE USUARIOS.
+
+   //a. Implementar una función registrarUsuario(nombre, email) que
+   //agregue un nuevo usuario al array usuarios.
+
+   function registrarUsuario(nombre, email) {
+   const nuevoId = usuarios.length ? usuarios[usuarios.length - 1].id + 1 : 1;
+
+   const nuevoUsuario = {
+   id: nuevoId,
+   nombre: nombre,
+   email: email,
+   librosPrestados: []
+   };
+
+   usuarios.push(nuevoUsuario);
+   console.log(`Usuario ${nombre} registrado.`);
+   }
+
+   registrarUsuario("Mariano Gel", "mariangel@gmail.com");
+   console.log(usuarios);
+
+   //b. Implementar una función mostrarTodosLosUsuarios() que me
+   //devuelva el array completo de usuarios
+
+   function mostrarLosUsuarios () {
+   console.log('Lista de usuarios:');
+   console.log(usarios)
+
+   }
